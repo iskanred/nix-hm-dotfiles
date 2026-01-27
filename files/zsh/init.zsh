@@ -1,0 +1,8 @@
+source "$HOME/.config/zsh/00-options.zsh"
+source "$HOME/.config/zsh/10-nix-path.zsh"
+source "$HOME/.config/zsh/20-env.zsh"
+source "$HOME/.config/zsh/30-keybindings.zsh"
+source "$HOME/.config/zsh/40-fzf.zsh"
+source "$HOME/.config/zsh/50-guard.zsh"
+source "$HOME/.config/zsh/60-yazi.zsh"
+source "$HOME/.config/zsh/70-hm.zsh"
