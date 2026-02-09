@@ -55,7 +55,7 @@ in
 
       clr = "clear";
       find = "fd";
-      hm = "home-manager --flake ${hmFlakeRef}";
+      hm = "home-manager --flake '${hmFlakeRef}'";
     };
 
     initContent = ''

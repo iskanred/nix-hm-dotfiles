@@ -11,8 +11,4 @@
 
   home.file.".p10k.zsh".source = ../../files/zsh/p10k.zsh;
 
-  home.file.".local/bin/v" = {
-    executable = true;
-    source = ../../files/nvim/nvr.sh;
-  };
 }

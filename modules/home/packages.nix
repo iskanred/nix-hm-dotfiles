@@ -56,9 +56,6 @@ let
     # AI agents
     codex
 
-    # Nvim
-    neovim-remote
-
     # JS
     nodejs_22
   ];
