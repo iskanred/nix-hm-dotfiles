@@ -23,6 +23,7 @@ let
     dust
     tldr
     direnv
+    kitty
 
     # Daily CLI
     git
@@ -60,6 +61,10 @@ let
     nodejs_22
   ];
 
+  fontsPackages = with pkgs; [
+    nerd-fonts.fira-code
+  ];
+
   linuxPackages = with pkgs; [
     iproute2
   ];
@@ -72,6 +77,7 @@ in
   # lib.optionals keeps one package list portable across Darwin and Linux.
   home.packages =
     commonPackages
+    ++ fontsPackages
     ++ lib.optionals isLinux linuxPackages
     ++ lib.optionals isDarwin darwinPackages;
 }

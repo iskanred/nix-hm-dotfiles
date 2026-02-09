@@ -44,8 +44,8 @@ in
     # Base aliases
     shellAliases = {
       # eza defaults: icons + grouped directories for a richer ls replacement.
-      ls = "eza -6 --icons=always --group-directories-first";
-      l = "eza --tree -level=1 --icons=always --group-directories-first";
+      ls = "eza --icons=always --group-directories-first";
+      l = "eza --tree --level=1 --icons=always --group-directories-first";
       la = "eza -a --icons=always --group-directories-first";
       ll = "eza -la --icons=always --group-directories-first --git";
       lt = "eza --tree --level=2 --icons=always";
