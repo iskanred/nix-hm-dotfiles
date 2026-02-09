@@ -53,6 +53,7 @@ in
       qemu
       ubridge
       vpcs
+      virt-viewer
 
       # Binary manipulations
       binwalk
@@ -68,6 +69,9 @@ in
 
       # Nvim
       neovim-remote
+
+      # JS
+      nodejs_22
     ])
     ++ lib.optionals isLinux (with pkgs; [
       # Linux-only
@@ -81,14 +85,9 @@ in
   xdg.enable = true;
 
   xdg.configFile."zsh/init.zsh".source = ./files/zsh/init.zsh;
-  xdg.configFile."zsh/00-options.zsh".source = ./files/zsh/00-options.zsh;
-  xdg.configFile."zsh/10-nix-path.zsh".source = ./files/zsh/10-nix-path.zsh;
-  xdg.configFile."zsh/20-env.zsh".source = ./files/zsh/20-env.zsh;
-  xdg.configFile."zsh/30-keybindings.zsh".source = ./files/zsh/30-keybindings.zsh;
-  xdg.configFile."zsh/40-fzf.zsh".source = ./files/zsh/40-fzf.zsh;
-  xdg.configFile."zsh/50-guard.zsh".source = ./files/zsh/50-guard.zsh;
-  xdg.configFile."zsh/60-yazi.zsh".source = ./files/zsh/60-yazi.zsh;
-  xdg.configFile."zsh/70-hm.zsh".source = ./files/zsh/70-hm.zsh;
+  xdg.configFile."zsh/environment.zsh".source = ./files/zsh/environment.zsh;
+  xdg.configFile."zsh/functions.zsh".source = ./files/zsh/functions.zsh;
+  xdg.configFile."zsh/interactive.zsh".source = ./files/zsh/interactive.zsh;
 
   xdg.configFile."nvim/init.lua".source = ./files/nvim/init.lua;
   xdg.configFile."yazi/yazi.toml".source = ./files/yazi/yazi.toml;
@@ -168,7 +167,7 @@ in
 
       clr = "clear";
       find = "fd";
-      hm = "home-manager";
+      hm = "home-manager --flake path:${config.home.homeDirectory}/.config/home-manager#${config.home.username}";
     };
 
     initContent = ''
