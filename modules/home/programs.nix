@@ -68,6 +68,10 @@ in
     vimAlias = true;
     viAlias = true;
     defaultEditor = true;
+    plugins = with pkgs.vimPlugins; [
+      nvim-cmp
+      cmp-nvim-lsp
+    ];
   };
 
   programs.fzf.enable = true;

@@ -1,12 +1,15 @@
 { ... }:
 
 {
-  xdg.configFile."zsh/init.zsh".source = ../../files/zsh/init.zsh;
-  xdg.configFile."zsh/environment.zsh".source = ../../files/zsh/environment.zsh;
-  xdg.configFile."zsh/functions.zsh".source = ../../files/zsh/functions.zsh;
-  xdg.configFile."zsh/interactive.zsh".source = ../../files/zsh/interactive.zsh;
+  xdg.configFile."zsh" = {
+    source = ../../files/zsh;
+    force = true;
+  };
 
-  xdg.configFile."nvim/init.lua".source = ../../files/nvim/init.lua;
+  xdg.configFile."nvim" = {
+    source = ../../files/nvim;
+    force = true;
+  };
   xdg.configFile."yazi/yazi.toml".source = ../../files/yazi/yazi.toml;
   xdg.configFile."kitty/kitty.conf".source = ../../files/kitty/kitty.conf;
 

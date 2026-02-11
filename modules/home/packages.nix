@@ -59,6 +59,10 @@ let
 
     # JS
     nodejs_22
+
+    # Java
+    jdk21
+    jdt-language-server
   ];
 
   fontsPackages = with pkgs; [
