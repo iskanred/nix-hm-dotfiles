@@ -69,6 +69,7 @@ in
     viAlias = true;
     defaultEditor = true;
     plugins = with pkgs.vimPlugins; [
+      onedark-nvim
       nvim-cmp
       cmp-nvim-lsp
     ];

@@ -60,6 +60,61 @@ Platform-specific packages are handled in:
 - `modules/home/files.nix` — managed dotfiles and scripts
 - `modules/home/programs.nix` — Zsh, Neovim, fzf, aliases
 
+## 🎨 Themes
+
+Theme settings are intentionally **separate** per tool. There is no unified theme script.
+
+### Variables (source of truth)
+Defined in `modules/home/base.nix` under `home.sessionVariables`:
+- `KITTY_THEME` — selects Kitty theme file name (without `.conf`)
+- `NVIM_THEME` — selects Neovim theme module name
+- `BAT_THEME` — selects bat theme name
+
+Example:
+```nix
+home.sessionVariables = {
+  KITTY_THEME = "one-dark";
+  NVIM_THEME = "one-dark";
+  BAT_THEME = "OneHalfDark";
+};
+```
+
+### Kitty
+- Config: `files/kitty/kitty.conf`
+- Theme include is **generated** by Home Manager:
+  - `~/.config/kitty/theme.conf` contains:
+    ```
+    include themes/<KITTY_THEME>.conf
+    ```
+- Theme files live in:
+  - `files/kitty/themes/<name>.conf`
+
+### Neovim
+- Loader: `files/nvim/lua/config/theme.lua`
+- Theme modules live in:
+  - `files/nvim/lua/themes/<name>.lua`
+- Selected via `NVIM_THEME`
+
+### bat
+- Controlled only by `BAT_THEME`
+- List available themes:
+  ```bash
+  bat --list-themes
+  ```
+
+### Changing themes
+1. Update variables in `modules/home/base.nix`.
+2. Run:
+```bash
+hm switch
+```
+
+### Adding a new theme
+1. **Kitty:** add `files/kitty/themes/<name>.conf`
+2. **Neovim:** add `files/nvim/lua/themes/<name>.lua`
+3. **bat:** ensure the theme exists in `bat --list-themes`
+4. Set `KITTY_THEME` / `NVIM_THEME` / `BAT_THEME` to those names.
+
 ## 🛠️ Useful Commands
 ```bash
 hm switch         # apply config

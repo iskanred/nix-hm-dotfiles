@@ -76,3 +76,17 @@ return M
 
 The whole `files/nvim/` directory is linked into `~/.config/nvim` by Home Manager.
 This makes the config declarative and reproducible across machines.
+
+## Themes (extensible)
+
+Themes are selected via the `NVIM_THEME` environment variable. The loader
+expects a module in `lua/themes/<name>.lua` that exposes `load()`.
+
+Current themes:
+- `one-dark`
+- `one-light`
+
+To add a new theme:
+1. Add a plugin (if needed) in `/Users/iskanred/.config/home-manager/modules/home/programs.nix`.
+2. Create `lua/themes/<name>.lua` with a `load()` function.
+3. Set `NVIM_THEME=<name>` (or use the theme helper in Zsh).

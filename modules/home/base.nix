@@ -26,6 +26,11 @@ in
     # fzf defaults (so they apply everywhere)
     FZF_DEFAULT_COMMAND = fdFindCmd;
     FZF_CTRL_T_COMMAND = fdFindCmd;
+
+    # Theme defaults
+    NVIM_THEME = "one-dark";
+    BAT_THEME = "OneHalfDark";
+    KITTY_THEME = "one-dark";
   };
 
   # PATH additions (instead of export PATH=...)
