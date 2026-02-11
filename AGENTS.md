@@ -40,3 +40,7 @@ Best-practice guidelines for automated changes in this repository.
 ## Commit hygiene
 - Do not stage or commit `local.nix`.
 - Keep commit messages short and descriptive (imperative mood).
+- Always include a short description in the commit body summarizing the changes.
+
+## Documentation
+- Always add meaningful emojis to `README.md` updates so users can scan docs more easily.

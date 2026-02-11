@@ -64,7 +64,7 @@ Platform-specific packages are handled in:
 
 Theme settings are intentionally **separate** per tool. There is no unified theme script.
 
-### Variables (source of truth)
+### 🧩 Variables (source of truth)
 Defined in `modules/home/base.nix` under `home.sessionVariables`:
 - `KITTY_THEME` — selects Kitty theme file name (without `.conf`)
 - `NVIM_THEME` — selects Neovim theme module name
@@ -79,7 +79,7 @@ home.sessionVariables = {
 };
 ```
 
-### Kitty
+### 🐱 Kitty
 - Config: `files/kitty/kitty.conf`
 - Theme include is **generated** by Home Manager:
   - `~/.config/kitty/theme.conf` contains:
@@ -89,27 +89,27 @@ home.sessionVariables = {
 - Theme files live in:
   - `files/kitty/themes/<name>.conf`
 
-### Neovim
+### ✍️ Neovim
 - Loader: `files/nvim/lua/config/theme.lua`
 - Theme modules live in:
   - `files/nvim/lua/themes/<name>.lua`
 - Selected via `NVIM_THEME`
 
-### bat
+### 🦇 bat
 - Controlled only by `BAT_THEME`
 - List available themes:
   ```bash
   bat --list-themes
   ```
 
-### Changing themes
+### 🔁 Changing themes
 1. Update variables in `modules/home/base.nix`.
 2. Run:
 ```bash
 hm switch
 ```
 
-### Adding a new theme
+### ➕ Adding a new theme
 1. **Kitty:** add `files/kitty/themes/<name>.conf`
 2. **Neovim:** add `files/nvim/lua/themes/<name>.lua`
 3. **bat:** ensure the theme exists in `bat --list-themes`
@@ -124,6 +124,7 @@ hm switch -b bak  # backup conflicting files and apply
 ## ⚠️ Notes
 - `local.nix` is intentionally in `.gitignore` and should **never** be committed.
 - If you clone this repo on another machine, create `local.nix` again from the example.
+- 📝 This README uses meaningful emojis to improve scanability.
 
 ## 🙌 Troubleshooting
 - If `hm switch` fails, run:
