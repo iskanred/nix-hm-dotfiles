@@ -32,6 +32,7 @@ let
     bat
     fd
     yazi
+    zoxide
     jq
 
     # Network
@@ -47,6 +48,7 @@ let
 
     # Binary manipulations
     binwalk
+    hyx
 
     # Processes
     htop

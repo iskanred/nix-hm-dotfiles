@@ -1,7 +1,6 @@
-{ config, ... }:
+{ config, local, ... }:
 
 let
-  local = import ../../local.nix;
   # Keep one canonical fd expression for shell and fzf integration.
   fdFindCmd = "fd --type f --hidden --follow --exclude .git";
 in

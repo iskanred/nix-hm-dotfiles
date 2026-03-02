@@ -14,6 +14,28 @@ Personal Home Manager setup for macOS and Linux, structured into small, meaningf
 
 > If you already use `home-manager`, you’re good to go.
 
+## 🧰 Install Nix + Home Manager (fresh machine)
+Follow the official guides first:
+- Nix installer: [nixos.org/download.html](https://nixos.org/download.html)
+- Home Manager: [nix-community.github.io/home-manager](https://nix-community.github.io/home-manager/)
+
+Then make sure flakes are enabled:
+
+1. Create or edit `/etc/nix/nix.conf` (root):
+```ini
+experimental-features = nix-command flakes
+```
+
+2. Restart your shell:
+```bash
+exec $SHELL
+```
+
+3. Verify flakes work:
+```bash
+nix flake show
+```
+
 ## 🚀 Quick Start
 1. Create your local settings file:
 ```bash
@@ -25,6 +47,7 @@ cp local.nix.example local.nix
 {
   username = "your-username";
   homeDirectory = "/Users/your-username"; # or /home/your-username on Linux
+  system = "aarch64-darwin"; # or x86_64-linux, aarch64-linux, x86_64-darwin
 }
 ```
 
@@ -45,6 +68,16 @@ To avoid that, the `hm` alias is set to use a **path-based flake**:
 home-manager --flake 'path:/Users/iskanred/.config/home-manager#iskanred'
 ```
 Path-based flakes read directly from disk, so `local.nix` is visible locally but never committed.
+
+## 🧩 System Values (local.nix)
+You must set `system` in `local.nix` so flakes know which platform to build for. Common values:
+- `x86_64-linux` (most PCs/laptops)
+- `aarch64-linux` (ARM Linux)
+- `x86_64-darwin` (Intel macOS)
+- `aarch64-darwin` (Apple Silicon macOS)
+
+Full list and explanation:
+[Nixpkgs platforms](https://nixos.org/manual/nixpkgs/stable/#chap-platforms)
 
 ## 🧩 Compatibility
 - ✅ **macOS (Darwin)** supported

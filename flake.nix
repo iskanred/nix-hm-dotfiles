@@ -13,19 +13,19 @@
   outputs =
     { nixpkgs, home-manager, ... }:
     let
-      system = "aarch64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-      homeConfigurations."iskanred" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+      local = import ./local.nix;
+      mkHome = system: home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
 
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
         modules = [ ./home.nix ];
 
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
+        # Pass local config to modules so home.nix doesn't import local.nix directly.
+        extraSpecialArgs = { inherit local; };
       };
+    in
+    {
+      homeConfigurations.${local.username} = mkHome local.system;
     };
 }
