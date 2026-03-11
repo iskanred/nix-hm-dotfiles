@@ -3,6 +3,7 @@
 let
   # Use path-based flakes so local.nix can stay gitignored and untracked.
   hmFlakeRef = "path:${config.home.homeDirectory}/.config/home-manager#${config.home.username}";
+  kittyPrimaryMod = if pkgs.stdenv.isDarwin then "cmd" else "ctrl";
 in
 {
   programs.zsh = {
@@ -44,11 +45,12 @@ in
     # Base aliases
     shellAliases = {
       # eza defaults: icons + grouped directories for a richer ls replacement.
-      ls = "eza --icons=always --group-directories-first";
-      l = "eza --tree --level=1 --icons=always --group-directories-first";
-      la = "eza -a --icons=always --group-directories-first";
-      ll = "eza -la --icons=always --group-directories-first --git";
-      lt = "eza --tree --level=2 --icons=always";
+      ls = "eza --group-directories-first";
+      l = "eza --tree --level=1 --group-directories-first";
+      lt = "eza --tree --level=2";
+      la = "eza -a --group-directories-first";
+      ll = "eza -l --git --group-directories-first";
+      lla = "eza -la --git --group-directories-first";
 
       cat = "bat";
       top = "htop";
@@ -61,6 +63,77 @@ in
     initContent = ''
       source "$HOME/.config/zsh/init.zsh"
     '';
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+    # Use `z` as the command and auto-add directories on `cd`.
+    options = [ "--cmd" "z" ];
+  };
+
+  programs.eza = {
+    enable = true;
+    # Disable built-in aliases; we provide custom eza aliases in programs.zsh.shellAliases.
+    enableZshIntegration = false;
+    icons = "always";
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    # Use nix-direnv for fast, cached nix shells on directory change.
+    nix-direnv.enable = true;
+  };
+
+  programs.kitty = {
+    enable = true;
+    # Use a built-in kitty-themes entry so theme is reproducible across systems.
+    themeFile = "OneDark";
+    # Configure Git difftool to use `kitten diff` for side-by-side terminal diffs.
+    enableGitIntegration = true;
+
+    font = {
+      # Explicit font choice for consistent rendering across macOS/Linux.
+      name = "FiraCode Nerd Font";
+      size = 16.0;
+    };
+
+    settings = {
+      # Faster cursor blink than Kitty default for clearer focus.
+      cursor_blink_interval = 0.2;
+
+      # Slight terminal transparency and blur for visual comfort.
+      # Note: blur is only effective on compositors/platforms that support it.
+      background_opacity = 0.9;
+      background_blur = 5;
+
+      # Keep powerline tab style with stable tab titles.
+      tab_bar_style = "powerline";
+      tab_powerline_style = "slanted";
+      tab_title_template = "{index}: {title}";
+
+      # Always ask confirmation before closing a tab/OS window (threshold = 1).
+      confirm_os_window_close = 1;
+      enable_audio_bell = false;
+    };
+
+    keybindings = {
+      # Use Cmd on macOS and Ctrl on Linux for consistent ergonomics.
+      "${kittyPrimaryMod}+t" = "new_tab";
+      "${kittyPrimaryMod}+w" = "close_tab";
+      "${kittyPrimaryMod}+shift+]" = "next_tab";
+      "${kittyPrimaryMod}+shift+[" = "previous_tab";
+      "${kittyPrimaryMod}+1" = "goto_tab 1";
+      "${kittyPrimaryMod}+2" = "goto_tab 2";
+      "${kittyPrimaryMod}+3" = "goto_tab 3";
+      "${kittyPrimaryMod}+4" = "goto_tab 4";
+      "${kittyPrimaryMod}+5" = "goto_tab 5";
+      "${kittyPrimaryMod}+6" = "goto_tab 6";
+      "${kittyPrimaryMod}+7" = "goto_tab 7";
+      "${kittyPrimaryMod}+8" = "goto_tab 8";
+      "${kittyPrimaryMod}+9" = "goto_tab 9";
+    };
   };
 
   programs.neovim = {

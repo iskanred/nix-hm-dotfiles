@@ -18,13 +18,9 @@ let
     gnutar
 
     # Modern alternatives
-    eza
     duf
     dust
     tldr
-    direnv
-    kitty
-
     # Daily CLI
     git
     tmux
@@ -32,7 +28,6 @@ let
     bat
     fd
     yazi
-    zoxide
     jq
 
     # Network

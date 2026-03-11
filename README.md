@@ -66,12 +66,12 @@ Full list:
 - `nix-store --optimise` — hardlink store paths to save space.
 
 ## 🎨 Themes (quick reference)
-The following environment variables are responsible for themes:
-- `KITTY_THEME` controls Kitty theme; config is in `files/kitty/kitty.conf`; theme files live in `files/kitty/themes/<name>.conf`.
+Theme selection is configured here:
+- Kitty theme is set by `programs.kitty.themeFile` in `modules/home/programs.nix` (uses themes from `kitty-themes`, e.g. `OneDark`).
 - `NVIM_THEME` controls Neovim themes; loader is in `files/nvim/lua/config/theme.lua`; theme modules live in `files/nvim/lua/themes/<name>.lua`.
 - `BAT_THEME` controls bat themes; list available themes with `bat --list-themes`.
 
-Change theme by updating these variables in `modules/home/base.nix`, then run:
+Change theme by updating the relevant setting, then run:
 ```bash
 hm switch
 ```

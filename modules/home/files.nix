@@ -11,15 +11,6 @@
     force = true;
   };
   xdg.configFile."yazi/yazi.toml".source = ../../files/yazi/yazi.toml;
-  xdg.configFile."kitty/kitty.conf".source = ../../files/kitty/kitty.conf;
-  xdg.configFile."kitty/themes" = {
-    source = ../../files/kitty/themes;
-    force = true;
-  };
-  xdg.configFile."kitty/theme.conf" = {
-    text = "include themes/${config.home.sessionVariables.KITTY_THEME}.conf\n";
-    force = true;
-  };
 
   home.file.".p10k.zsh".source = ../../files/zsh/.p10k.zsh;
 }

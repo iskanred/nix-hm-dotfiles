@@ -29,7 +29,6 @@ in
     # Theme defaults
     NVIM_THEME = "one-dark";
     BAT_THEME = "OneHalfDark";
-    KITTY_THEME = "one-dark";
   };
 
   # PATH additions (instead of export PATH=...)
