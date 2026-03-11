@@ -23,7 +23,7 @@ Migration progress is tracked in this same file below (`Program Replacements`) u
 5. Remove duplicates and obsolete manual config only when safe.
 6. Mark the item as `(replaced)` in `Program Replacements`.
 7. Always validate before reporting:
-   - `XDG_CACHE_HOME=/tmp home-manager --flake path:.#iskanred switch && exec zsh -lc 'exit'`
+   - `XDG_CACHE_HOME=/tmp home-manager --flake path:.#$USER switch && exec zsh -lc 'exit'`
 
 ## Reporting Format After Each Step
 - What was found (duplicates/manual config)
