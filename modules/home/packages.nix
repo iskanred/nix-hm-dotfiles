@@ -51,9 +51,6 @@ let
     ripgrep
     pstree
 
-    # AI agents
-    codex
-
     # JS
     nodejs_22
 
