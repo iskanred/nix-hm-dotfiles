@@ -44,20 +44,24 @@ in
 
     # Base aliases
     shellAliases = {
-      # eza defaults: icons + grouped directories for a richer ls replacement.
-      ls = "eza --group-directories-first";
-      l = "eza --tree --level=1 --group-directories-first";
-      lt = "eza --tree --level=2";
-      la = "eza -a --group-directories-first";
-      ll = "eza -l --git --group-directories-first";
-      lla = "eza -la --git --group-directories-first";
+      # eza defaults: icons + grouped directories for a richer ls replacement
+      ls  = "eza --group-directories-first";
+      lsa = "eza --group-directories-first --all";
+
+      l   = "eza --group-directories-first --tree --level=1";
+      la  = "eza --group-directories-first --tree --level=1 --all";
+
+      lt  = "eza --group-directories-first --tree --level=2";
+      lta = "eza --group-directories-first --tree --level=2 --all";
+
+      # '--git' and '--binary' options only have sense when using with '--long' option
+      ll  = "eza --group-directories-first --long --binary --git";
+      lla = "eza --group-directories-first --long --binary --git --all";
 
       cat = "bat";
       top = "htop";
 
-      clr = "clear";
-      find = "fd";
-      hm = "home-manager --flake '${hmFlakeRef}'";
+      hm  = "home-manager --flake '${hmFlakeRef}'";
     };
 
     initContent = ''
