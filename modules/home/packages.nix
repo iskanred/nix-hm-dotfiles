@@ -57,6 +57,9 @@ let
     # Java
     jdk21
     jdt-language-server
+
+    # Docs
+    pandoc
   ];
 
   fontsPackages = with pkgs; [
