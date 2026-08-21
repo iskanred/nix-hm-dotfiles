@@ -60,6 +60,7 @@ let
 
     # Docs
     pandoc
+    typst
   ];
 
   fontsPackages = with pkgs; [
