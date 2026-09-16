@@ -3,7 +3,7 @@
 let
   # Use path-based flakes so local.nix can stay gitignored and untracked.
   hmFlakeRef = "path:${config.home.homeDirectory}/.config/home-manager#${config.home.username}";
-  kittyPrimaryMod = if pkgs.stdenv.isDarwin then "cmd" else "ctrl";
+  kittyPrimaryMod = if pkgs.stdenv.hostPlatform.isDarwin then "cmd" else "ctrl";
 in
 {
   programs.zsh = {

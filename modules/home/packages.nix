@@ -2,8 +2,8 @@
 
 let
   lib = pkgs.lib;
-  isDarwin = pkgs.stdenv.isDarwin;
-  isLinux = pkgs.stdenv.isLinux;
+  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
+  isLinux = pkgs.stdenv.hostPlatform.isLinux;
 
   ubridgeDarwin = pkgs.ubridge.overrideAttrs (_old: rec {
     version = "1.1.1";
