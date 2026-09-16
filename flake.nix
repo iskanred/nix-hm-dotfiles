@@ -11,21 +11,35 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }:
+    { self, nixpkgs, home-manager, ... }:
     let
-      local = import ./local.nix;
-      mkHome = system: home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
+      hasLocal = builtins.pathExists ./local.nix;
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [ ./home.nix ];
+      local =
+        if hasLocal
+        then import ./local.nix
+        else null;
 
-        # Pass local config to modules so home.nix doesn't import local.nix directly.
-        extraSpecialArgs = { inherit local; };
-      };
+      mkHome = system:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+
+          modules = [
+            self.homeModules.default
+          ];
+
+          extraSpecialArgs = {
+            inherit local;
+          };
+        };
     in
     {
+      # Reusable Home Manager module.
+      # nix-darwin, NixOS, or another flake can import this.
+      homeModules.default = ./home.nix;
+    }
+    // nixpkgs.lib.optionalAttrs hasLocal {
+      # Standalone Home Manager configuration, available when local.nix exists.
       homeConfigurations.${local.username} = mkHome local.system;
     };
 }
