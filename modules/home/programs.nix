@@ -61,6 +61,7 @@ in
       cat = "bat";
       top = "htop";
 
+      # TODO: Remove the standalone Home Manager alias once macOS fully uses nix-darwin-managed Home Manager.
       hm  = "home-manager --flake '${hmFlakeRef}'";
     };
 
