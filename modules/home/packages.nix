@@ -5,6 +5,18 @@ let
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
 
+  ubridgeDarwin = pkgs.ubridge.overrideAttrs (_old: rec {
+    version = "1.1.1";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "GNS3";
+      repo = "ubridge";
+      tag = "v${version}";
+      hash = "sha256-2kt5naxMZwYX39sGyPqjiybFb8QtZuDbyBnMPeZS9U0=";
+    };
+  });
+
+
   commonPackages = with pkgs; [
     # Sanity check
     hello
@@ -37,7 +49,6 @@ let
 
     # Virtualization
     qemu
-    ubridge
     vpcs
     virt-viewer
 
@@ -69,10 +80,12 @@ let
 
   linuxPackages = with pkgs; [
     iproute2
+    ubridge
   ];
 
   darwinPackages = with pkgs; [
     iproute2mac
+    ubridgeDarwin
   ];
 in
 {
