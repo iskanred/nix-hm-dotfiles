@@ -13,10 +13,7 @@ in
   xdg.enable = true;
 
   home.sessionVariables = {
-    # XDG base dirs
-    XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
-    XDG_CACHE_HOME = "${config.home.homeDirectory}/.cache";
-    XDG_DATA_HOME = "${config.home.homeDirectory}/.local/share";
+    DOCKER_CONFIG = "${config.xdg.configHome}/docker";
 
     # Pager defaults
     LESS = "-R";

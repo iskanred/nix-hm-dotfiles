@@ -48,6 +48,7 @@ let
     nmap
 
     # Virtualization
+    docker
     qemu
     vpcs
     virt-viewer
